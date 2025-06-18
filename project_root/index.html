@@ -5,8 +5,35 @@
   <title>Welcome - Softvision IT Group</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      background: #f8f9fa;
+      min-height: 100vh;
+      min-width: 100vw;
+      overflow: hidden;
+      position: relative;
+    }
+    .bg-hero {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      background: url('./accets/photoes/new2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      animation: zoomIn 18s ease-in-out infinite alternate;
+      filter: brightness(0.7) blur(2px);
+    }
+    @keyframes zoomIn {
+      0% { transform: scale(1);}
+      100% { transform: scale(1.08);}
+    }
+    .navbar {
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      background: rgba(13,17,23,0.95) !important;
+      backdrop-filter: blur(2px);
     }
     .welcome-section {
       min-height: 80vh;
@@ -14,28 +41,103 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+    .welcome-card {
+      background: rgba(181, 168, 168, 0.18);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+      padding: 3rem 2.5rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.25);
+      animation: fadeInUp 1.2s cubic-bezier(.39,.575,.565,1) both;
+    }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .welcome-card img {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 1.2rem;
+      border-radius: 50%;
+      background: #f8f9fa;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      object-fit: contain;
+      animation: fadeIn 1.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .welcome-card h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #a09bb0;
+      margin-bottom: 1rem;
+      animation: fadeIn 2s;
+    }
+    .welcome-card p {
+      color: #e2e6eb;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      animation: fadeIn 2.2s;
+    }
+    .btn-primary {
+      padding: 0.75rem 2.2rem;
+      font-size: 1.1rem;
+      border-radius: 2rem;
+      box-shadow: 0 4px 16px rgba(58,123,213,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fadeIn 2.4s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 32px rgba(58,123,213,0.18);
+    }
+    @media (max-width: 600px) {
+      .welcome-card {
+        padding: 2rem 1rem;
+      }
+      .welcome-card h1 {
+        font-size: 1.4rem;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="bg-hero"></div>
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="./accets/icons/logo1.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
-        Softvision IT Group
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="./accets/icons/logo1.png" alt="Logo" width="40" height="40" class="me-2">
+        <span>Softvision IT Group</span>
       </a>
       <div>
-        <a href="login.html" class="btn btn-outline-light">Login</a>
+        <a href="login.html" class="btn btn-outline-light rounded-pill px-4">Login</a>
       </div>
     </div>
   </nav>
 
   <!-- Welcome Section -->
-  <div class="welcome-section text-center">
-    <h1 class="mb-3">Welcome to Softvision IT Group</h1>
-    <p class="mb-4">Your trusted partner for IT solutions and services.</p>
-    <a href="login.html" class="btn btn-primary btn-lg">Get Started</a>
+  <div class="welcome-section">
+    <div class="welcome-card mx-auto">
+      <img src="./accets/icons/logo1.png" alt="Logo">
+      <h1 class="mb-3">Welcome to Softvision IT Group</h1>
+      <p class="mb-4">Your trusted partner for IT solutions and services.</p>
+      <a href="login.html" class="btn btn-primary btn-lg shadow">Get Started</a>
+    </div>
   </div>
 </body>
 </html>
