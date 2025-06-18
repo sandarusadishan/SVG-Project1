@@ -1,0 +1,78 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  height: 100vh;
+  background-color: #0d1117;
+  color: white;
+  padding: 1.5rem 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+}
+
+.sidebar h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar .nav-link {
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 5px;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  background-color: #21262d;
+}
+
+/* Content layout beside sidebar */
+.main-content {
+  margin-left: 220px;
+  padding: 2rem;
+}
+
+/* Form sections */
+.form-section {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.nav-tabs .nav-link.active {
+  font-weight: bold;
+  color: #0d6efd !important;
+}
+
+/* Auth (login/signup) styling */
+.auth-section {
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+button:focus {
+  box-shadow: none !important;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  .main-content {
+    margin-left: 0;
+  }
+}
