@@ -93,26 +93,14 @@
     <div class="row g-4">
       <div class="col-lg-6">
         <div class="card p-4">
-          <h5 class="card-title">Sales Overview</h5>
-          <canvas id="salesChart" height="180"></canvas>
+          <h5 class="card-title">Monthly Sales Trend</h5>
+          <canvas id="salesTrendChart" height="220"></canvas>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="card p-4">
-          <h5 class="card-title">Customer Growth</h5>
-          <canvas id="customerChart" height="180"></canvas>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="card p-4">
-          <h5 class="card-title">Revenue Breakdown</h5>
-          <canvas id="revenueChart" height="180"></canvas>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="card p-4">
-          <h5 class="card-title">Product Distribution</h5>
-          <canvas id="productChart" height="180"></canvas>
+          <h5 class="card-title">Customer Segments</h5>
+          <canvas id="customerSegmentsChart" height="220"></canvas>
         </div>
       </div>
     </div>
@@ -122,16 +110,20 @@
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <script>
-    // Sales Overview (Line Chart)
-    new Chart(document.getElementById('salesChart'), {
+    // Monthly Sales Trend (Line Chart with gradient)
+    const ctx1 = document.getElementById('salesTrendChart').getContext('2d');
+    const gradient = ctx1.createLinearGradient(0, 0, 0, 220);
+    gradient.addColorStop(0, 'rgba(58,123,213,0.4)');
+    gradient.addColorStop(1, 'rgba(58,123,213,0.05)');
+    new Chart(ctx1, {
       type: 'line',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-          label: 'Sales',
-          data: [12000, 15000, 14000, 17000, 20000, 22000, 21000],
+          label: 'Sales ($)',
+          data: [12000, 15000, 14000, 17000, 20000, 22000, 21000, 23000, 25000, 24000, 26000, 27000],
           borderColor: '#3a7bd5',
-          backgroundColor: 'rgba(58,123,213,0.1)',
+          backgroundColor: gradient,
           tension: 0.4,
           fill: true,
           pointRadius: 5,
@@ -140,35 +132,34 @@
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } }
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return ' $' + context.parsed.y.toLocaleString();
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) { return '$' + value/1000 + 'k'; }
+            }
+          }
+        }
       }
     });
 
-    // Customer Growth (Bar Chart)
-    new Chart(document.getElementById('customerChart'), {
-      type: 'bar',
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-        datasets: [{
-          label: 'Customers',
-          data: [50, 65, 80, 90, 120, 140, 160],
-          backgroundColor: 'rgba(58,123,213,0.7)',
-          borderRadius: 8
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } }
-      }
-    });
-
-    // Revenue Breakdown (Doughnut Chart)
-    new Chart(document.getElementById('revenueChart'), {
+    // Customer Segments (Doughnut Chart)
+    new Chart(document.getElementById('customerSegmentsChart'), {
       type: 'doughnut',
       data: {
-        labels: ['Product A', 'Product B', 'Product C', 'Services'],
+        labels: ['Enterprise', 'SMB', 'Individual', 'Other'],
         datasets: [{
-          data: [40, 25, 20, 15],
+          data: [45, 30, 20, 5],
           backgroundColor: [
             '#3a7bd5',
             '#00c6fb',
@@ -180,28 +171,17 @@
       },
       options: {
         responsive: true,
-        plugins: { legend: { position: 'bottom' } }
-      }
-    });
-
-    // Product Distribution (Pie Chart)
-    new Chart(document.getElementById('productChart'), {
-      type: 'pie',
-      data: {
-        labels: ['Basic', 'Standard', 'Premium'],
-        datasets: [{
-          data: [55, 30, 15],
-          backgroundColor: [
-            '#3a7bd5',
-            '#00c6fb',
-            '#fbc531'
-          ],
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { position: 'bottom' } }
+        plugins: {
+          legend: { position: 'bottom' },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': ' + context.parsed + '%';
+              }
+            }
+          }
+        },
+        cutout: '70%'
       }
     });
 
