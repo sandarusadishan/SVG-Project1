@@ -2,40 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome - Softvision IT Group</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Softvision IT Group</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: #f8f9fa;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
     }
-    .welcome-section {
-      min-height: 80vh;
+    .sidebar {
+      height: 100vh;
+      background-color: #0d1117;
+      color: white;
+      padding: 1rem;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 220px;
+      z-index: 1030;
+      overflow-y: auto;
+    }
+    .sidebar h4 {
+      font-size: 1.1rem;
+    }
+    .main-content {
+      margin-left: 220px;
+      padding: 0;
+      height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
+    }
+    .navbar-fixed {
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+      background: #fff;
+      padding: 1rem 2rem 0 2rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .content-scroll {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 2rem;
+    }
+    .form-section {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .nav-tabs .nav-link.active {
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="./accets/icons/logo1.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
-        Softvision IT Group
-      </a>
-      <div>
-        <a href="login.html" class="btn btn-outline-light">Login</a>
+  <div class="sidebar">
+    <div class="mb-3 text-center">
+      <img src="./accets/icons/logo1.png" alt="Company Logo" style="max-width: 100px; max-height: 100px;">
+    </div>
+    <h4>Softvision IT Group (Pvt)Ltd</h4>
+    <ul class="nav flex-column mt-4">
+      <li class="nav-item"><a class="nav-link text-white" href="./dash.html">Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="./dashboard.html">Customers</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">Reports</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="#">Setup</a></li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="navbar-fixed">
+      <ul class="nav nav-tabs" id="dashboardTabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#dashboardTab">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#customersTab">Customers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#reportsTab">Reports</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#setupTab">Setup</a>
+        </li>
+      </ul>
+      <button class="btn btn-outline-danger ms-3" onclick="signOut()">Sign Out</button>
+    </div>
+    <div class="content-scroll">
+      <div class="tab-content mt-4">
+        <div class="tab-pane fade show active" id="dashboardTab">
+          <div class="form-section">
+            <h4>Dashboard</h4>
+            <p>Welcome to your dashboard! Add widgets and quick stats here.</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="customersTab">
+          <div class="form-section">
+            <h4>Customers</h4>
+            <p>Manage your customers here.</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="reportsTab">
+          <div class="form-section">
+            <h4>Reports</h4>
+            <p>View and generate reports here.</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="setupTab">
+          <div class="form-section">
+            <h4>Setup</h4>
+            <p>Configure your application settings here.</p>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
-
-  <!-- Welcome Section -->
-  <div class="welcome-section text-center">
-    <h1 class="mb-3">Welcome to Softvision IT Group</h1>
-    <p class="mb-4">Your trusted partner for IT solutions and services.</p>
-    <a href="login.html" class="btn btn-primary btn-lg">Get Started</a>
   </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function signOut() {
+    window.location.href = "login.html";
+  }
+</script>
 </body>
 </html>

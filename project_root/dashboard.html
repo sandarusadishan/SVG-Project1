@@ -66,14 +66,14 @@
     </div>
     <h4>Softvision IT Group (Pvt)Ltd</h4>
     <ul class="nav flex-column mt-4">
-      <li class="nav-item"><a class="nav-link text-white" href="#">Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="./dash.html">Dashboard</a></li>
       <li class="nav-item"><a class="nav-link text-white" href="#">Customers</a></li>
       <li class="nav-item"><a class="nav-link text-white" href="#">Reports</a></li>
       <li class="nav-item"><a class="nav-link text-white" href="#">Setup</a></li>
     </ul>
   </div>
   <div class="main-content">
-    <div class="navbar-fixed">
+    <div class="navbar-fixed d-flex justify-content-between align-items-center">
       <ul class="nav nav-tabs" id="formTabs">
         <li class="nav-item">
           <a class="nav-link active" data-bs-toggle="tab" href="#customerDetails">Customer Details</a>
@@ -82,6 +82,7 @@
           <a class="nav-link" data-bs-toggle="tab" href="#amcDetails">AMC/BLS/Cloud Detail</a>
         </li>
       </ul>
+      <button class="btn btn-outline-danger ms-auto" onclick="signOut()">Sign Out</button>
     </div>
     <div class="content-scroll">
       <div class="tab-content mt-4">
@@ -146,5 +147,11 @@
     </div>
   </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function signOut() {
+    window.location.href = "login.html";
+  }
+</script>
 </body>
+
 </html>
