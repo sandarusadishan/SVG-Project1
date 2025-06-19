@@ -22,8 +22,8 @@
       z-index: 0;
       background: url('./accets/photoes/new2.jpg') no-repeat center center fixed;
       background-size: cover;
-      animation: zoomIn 18s ease-in-out infinite alternate;
-      filter: brightness(0.7) blur(2px);
+      animation: zoomIn 10s ease-in-out infinite alternate;
+      filter: brightness(1) blur(0px);
     }
     @keyframes zoomIn {
       0% { transform: scale(1);}
@@ -105,6 +105,45 @@
       transform: translateY(-2px) scale(1.04);
       box-shadow: 0 8px 32px rgba(58,123,213,0.18);
     }
+    /* Decorated Login Button */
+    .btn-login {
+      border-radius: 2rem;
+      padding: 0.6rem 2rem;
+      font-weight: 600;
+      font-size: 1.08rem;
+      background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
+      color: #fff !important;
+      border: none;
+      box-shadow: 0 4px 16px rgba(58,123,213,0.18);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      left: -75%;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: rgba(255,255,255,0.13);
+      transform: skewX(-20deg);
+      transition: left 0.4s;
+      z-index: 0;
+    }
+    .btn-login:hover {
+      background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 32px rgba(58,123,213,0.22);
+    }
+    .btn-login:hover::before {
+      left: 120%;
+    }
+    .btn-login span {
+      position: relative;
+      z-index: 1;
+    }
     @media (max-width: 600px) {
       .welcome-card {
         padding: 2rem 1rem;
@@ -125,7 +164,7 @@
         <span>Softvision IT Group</span>
       </a>
       <div>
-        <a href="login.html" class="btn btn-outline-light rounded-pill px-4">Login</a>
+        <a href="login.html" class="btn btn-login rounded-pill px-4"><span>Login</span></a>
       </div>
     </div>
   </nav>
@@ -139,5 +178,3 @@
       <a href="login.html" class="btn btn-primary btn-lg shadow">Get Started</a>
     </div>
   </div>
-</body>
-</html>
